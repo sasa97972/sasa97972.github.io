@@ -30,7 +30,7 @@ const TableRow = ({
                         id={row_data.id}
                         value={edit_data[item]}
                         name={item}
-                        handle_input={handle_input} />
+                        handle_input={handle_input}/>
                     :
                     <Content>{row_data[item]}</Content>}
             </TableCell>
@@ -43,9 +43,9 @@ const TableRow = ({
             {TableCells}
 
             <TableCell>
-                <div>
-                {edit_mode ?
-                    <span>
+                <div style={{display: "flex"}}>
+                    {edit_mode ?
+                        <span>
                         <Fab
                             onClick={handle_save.bind(null, row_data.id)}
                             style={{backgroundColor: 'green', color: 'white'}}
@@ -61,23 +61,23 @@ const TableRow = ({
                             <CancelIcon/>
                         </Fab>
                     </span>
-                    :
+                        :
+                        <Fab
+                            onClick={handle_mode_change.bind(null, row_data.id)}
+                            color="primary"
+                            size="small"
+                            label="Edit">
+                            <EditIcon/>
+                        </Fab>
+                    }
                     <Fab
-                        onClick={handle_mode_change.bind(null, row_data.id)}
-                        color="primary"
+                        onClick={handle_delete.bind(null, row_data.id)}
+                        style={{marginLeft: 20}}
+                        color="secondary"
                         size="small"
-                        label="Edit">
-                        <EditIcon/>
+                        label="Delete">
+                        <DeleteIcon/>
                     </Fab>
-                }
-                <Fab
-                    onClick={handle_delete.bind(null, row_data.id)}
-                    style={{marginLeft: 20}}
-                    color="secondary"
-                    size="small"
-                    label="Delete">
-                    <DeleteIcon/>
-                </Fab>
                 </div>
             </TableCell>
 
