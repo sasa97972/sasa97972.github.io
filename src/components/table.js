@@ -8,6 +8,8 @@ import TableHeader from './table-header';
 import Toolbar from './table-toolbar';
 import Empty from "./table-empty";
 
+import "../assets/main.css"
+
 export default class Table extends Component {
 
     constructor(props) {
@@ -148,7 +150,7 @@ export default class Table extends Component {
                 {tableRows ?
                     <div>
                         <Paper style={{marginBottom: 20, overflowX: "auto"}}>
-                            <TableMui>
+                            <TableMui id="mainTable">
                                 <TableHeader table_columns_names={table_columns_names}/>
                                 <TableBody>
                                     {tableRows.length > 0 ? tableRows : <Empty length={table_columns_names.length + 1}/>}

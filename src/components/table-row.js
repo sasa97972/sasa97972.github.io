@@ -3,12 +3,12 @@ import TableCell from '@material-ui/core/TableCell';
 import TableRowMui from '@material-ui/core/TableRow';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
-import SaveIcon from '@material-ui/icons/Save';
-import CancelIcon from '@material-ui/icons/Cancel';
 import Fab from '@material-ui/core/Fab';
+import PropTypes from 'prop-types';
 
 import Content from './table-cell-content';
 import Edit from './table-cell-edit';
+import ButtonsEdit from './table-buttons-edit';
 
 const TableRow = ({
                       table_columns_names,
@@ -45,22 +45,11 @@ const TableRow = ({
             <TableCell>
                 <div style={{display: "flex"}}>
                     {edit_mode ?
-                        <span>
-                        <Fab
-                            onClick={handle_save.bind(null, row_data.id)}
-                            style={{backgroundColor: 'green', color: 'white'}}
-                            size="small"
-                            label="Save">
-                            <SaveIcon/>
-                        </Fab>
-                        <Fab
-                            onClick={handle_cancel.bind(null, row_data.id)}
-                            style={{backgroundColor: 'tomato', color: 'white', marginLeft: 20}}
-                            size="small"
-                            label="Cancel">
-                            <CancelIcon/>
-                        </Fab>
-                    </span>
+                        <ButtonsEdit
+                            id={row_data.id}
+                            handle_save={handle_save}
+                            handle_cancel={handle_cancel}
+                        />
                         :
                         <Fab
                             onClick={handle_mode_change.bind(null, row_data.id)}
@@ -83,6 +72,15 @@ const TableRow = ({
 
         </TableRowMui>
     );
+};
+
+TableRow.propTypes = {
+    table_columns_names: PropTypes.arrayOf(PropTypes.string),
+    handle_mode_change: PropTypes.func.isRequired,
+    handle_cancel: PropTypes.func.isRequired,
+    handle_delete: PropTypes.func.isRequired,
+    handle_save: PropTypes.func.isRequired,
+    handle_input: PropTypes.func.isRequired,
 };
 
 export default TableRow;
